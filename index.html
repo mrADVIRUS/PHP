@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <link rel="stylesheet" href="CSS/styleloginform.css">
+</head>
+<body>
+    <div class="loginForm">
+        <h1>Login Form</h1><br>
+        <form action="handlerLogin.php" method="post">
+            <input type="text" name="login" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" class="login login-submit" value="Login">
+        </form>
+
+        <div class="login-help">
+            <a href="registry.php">Register</a>
+        </div>
+    </div>
+
+</body>
+</html>
