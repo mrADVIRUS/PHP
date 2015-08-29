@@ -94,29 +94,3 @@ if(isset($_POST)) {
     //redirect back to form
     header('location: ' . $_SERVER['HTTP_REFERER']);
 }
-
-
-/*//include DB Class
-include_once 'db.php';
-
-$db = new DB();
-$checkLogin = $db->checkLogin($login);
-if ($checkLogin) {
-    $againReg = "<a href=\"registry.php\">again registry</a>";
-    p('Login exists. Goto '. $againReg. ' for change data');
-    exit;
-} else {
-    $arr = array('login'=>$login, 'psw'=>$password, 'fio'=>$fullName, 'email'=>$email, 'status'=>$family_status, 'city'=>$city, 'date'=>$date, 'phone'=>$phone, 'education'=>$education, 'experience'=>$experience, 'info'=>$info);
-    $flag = $db->registryCustomer($arr);
-    if (!$flag) {
-        p("Something wrong");
-        exit;
-    } else {
-        //goto to form index.html
-        $indexPage = "<a href=\"index.html\">Home page</a>";
-        p('Registry successful. Goto '. $indexPage);
-    }
-}
-
-
-function p($x){print "<div>$x</div>";}*/
