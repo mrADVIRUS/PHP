@@ -1,0 +1,76 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.11
+-- http://www.phpmyadmin.net
+--
+-- Хост: db2.ho.ua
+-- Время создания: Авг 31 2015 г., 12:21
+-- Версия сервера: 5.6.26-log
+-- Версия PHP: 5.6.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- База данных: `auth`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) unsigned NOT NULL,
+  `user_login` varchar(30) NOT NULL,
+  `user_password` varchar(32) NOT NULL,
+  `user_hash` varchar(32) NOT NULL,
+  `user_fio` varchar(100) NOT NULL,
+  `user_date` date DEFAULT '2001-01-01',
+  `user_city` varchar(50) DEFAULT NULL,
+  `user_family_status` tinyint(1) DEFAULT '0',
+  `user_education` varchar(50) DEFAULT NULL,
+  `user_experience` varchar(500) DEFAULT NULL,
+  `user_email` varchar(50) NOT NULL,
+  `user_phone` varchar(15) DEFAULT NULL,
+  `user_about` text,
+  `user_path` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_login`, `user_password`, `user_hash`, `user_fio`, `user_date`, `user_city`, `user_family_status`, `user_education`, `user_experience`, `user_email`, `user_phone`, `user_about`, `user_path`) VALUES
+(1, 'admin', 'admin2012', 'f86aa35ef6ff415e6687fa0d68326458', 'Lyahovchuk Sergiy', '0000-00-00', '', 0, '', '', 'lyahovchuk.s@eventsoft.com.ua', '', '', ''),
+(3, 'user', 'user2012', '3d7edcce8ec0d25047c01f405ffaf46c', 'Lyahovchuk Sergiy', '0000-00-00', '', 1, '', '', 'lyahovchuk.s@eventsoft.com.ua', '', '', 'Pictures/ff9122816007fc662537d1412b893bca.jpg');
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

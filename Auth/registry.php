@@ -33,7 +33,7 @@
             ?>
         </ul>
         <p id="success" class="<?php echo ($sessionReturn && $data['form_ok']) ? 'visible' : ''; ?>"><?php $indexPage = "<a href=\"index.html\">Home page</a>"; echo 'Registry successful! Go to '.$indexPage.' for enter new Login!'; ?></p>
-        <form action="handlerRegistry.php" method="post">
+        <form action="handlerRegistry.php" method="post" enctype="multipart/form-data">
 <!--            required-->
             <label for="login">Your Login <span class="required">*</span><span id="checkLogin"></span></label>
             <input type="text" id="loginValue" onblur="checkLoginInDB(this.value)" name="login" value="<?php echo ($sessionReturn && !$data['form_ok']) ? $data['posted_form_data']['login'] : ''; ?>" placeholder="Your Login" required autofocus>
@@ -69,6 +69,9 @@
 
             <label for="info">Additional information</label>
             <textarea name="info" value="<?php echo ($sessionReturn && !$data['form_ok']) ? $data['posted_form_data']['info'] : ''; ?>" rows="5" cols="40"></textarea>
+
+            <label for="file">Filename:</label>
+            <input type="file" name="userfile" id="file"><br>
 
             <input type="submit" class="login login-submit" value="Registry">
 

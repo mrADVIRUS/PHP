@@ -69,9 +69,9 @@ class DB {
     //save new User in DB
     function registryCustomer ($arr) {
         $hash = $this->encrypt($arr['psw']);
-        $data = array($arr['login'], $arr['psw'], $hash, $arr['fio'], $arr['email'], $arr['status'], $arr['city'], $arr['date'], $arr['phone'], $arr['education'], $arr['experience'], $arr['info']);
+        $data = array($arr['login'], $arr['psw'], $hash, $arr['fio'], $arr['email'], $arr['status'], $arr['city'], $arr['date'], $arr['phone'], $arr['education'], $arr['experience'], $arr['info'], $arr['filepath']);
         try {
-            $STH = $this->dbh->prepare("INSERT INTO users (`user_login`, `user_password`, `user_hash`, `user_fio`, `user_email`, `user_family_status`, `user_city`, `user_date`, `user_phone`, `user_education`, `user_experience`, `user_about`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $STH = $this->dbh->prepare("INSERT INTO users (`user_login`, `user_password`, `user_hash`, `user_fio`, `user_email`, `user_family_status`, `user_city`, `user_date`, `user_phone`, `user_education`, `user_experience`, `user_about`, `user_path`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $status = $STH->execute($data);
             return $status;
         }

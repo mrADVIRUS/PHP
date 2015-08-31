@@ -37,6 +37,11 @@ function text($field)
 <div id="contentwrapper">
     <h1>About Information User</h1><br>
     <hr>
+    <?php
+    if (strlen($userData['user_path']) > 0) {
+        echo "<img src='". $userData['user_path'] ."' alt=\"Logo\" width=\"100\" height=\"150\" />";
+    }
+    ?>
     <label>Full name:</label>
     <input type="text" value="<?php echo text($userData['user_fio']); ?>" readonly />
     <label>Date birthday:</label>

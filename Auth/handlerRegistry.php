@@ -55,6 +55,40 @@ if(isset($_POST)) {
         $err[] = "You have not entered a valid email address";
     }
 
+    $uploadDir = 'Pictures/';
+    $filePath = '';
+    if(isset ($_FILES ['userfile'])) {
+        //echo '<br>File uploaded<br>';
+        $fileName = $_FILES['userfile']['name'];
+        $tmpName = $_FILES['userfile']['tmp_name'];
+        $fileSize = $_FILES['userfile']['size'];
+        $fileType = $_FILES['userfile']['type'];
+
+        if($fileType=='image/jpeg' || $fileType=='image/png' || $fileType=='image/gif' || $fileType=='image/jpeg') {
+            // get the file extension first
+            $ext = substr(strrchr($fileName, "."), 1);
+            // make the random file name
+            $randName = md5(rand() * time());
+
+            $filePath = $uploadDir . $randName . '.' . $ext;
+            echo '<br>Path: '. $filePath .'<br>';
+            $result = move_uploaded_file($tmpName, $filePath);
+            if (!$result) {
+                echo "Error uploading file";
+                exit;
+            }
+
+            //echo "<img src='". $filePath ."' alt=\"Logo\" width=\"100\" height=\"150\" />";
+        } else {
+            $formflag = false;
+            $err[] = "Uploaded file is not image format! Need to select format file png, gif or jpeg.";
+        }
+
+    } else {
+        echo '<br>File not uploaded<br>';
+    }
+
+
     //check the form, if ok - save a new user to DB
     if ($formflag) {
         //include DB Class
@@ -62,7 +96,7 @@ if(isset($_POST)) {
 
         $db = new DB();
 
-        $user = array('login'=>$login, 'psw'=>$password, 'fio'=>$fullName, 'email'=>$email, 'status'=>$family_status, 'city'=>$city, 'date'=>$date, 'phone'=>$phone, 'education'=>$education, 'experience'=>$experience, 'info'=>$info);
+        $user = array('login'=>$login, 'psw'=>$password, 'fio'=>$fullName, 'email'=>$email, 'status'=>$family_status, 'city'=>$city, 'date'=>$date, 'phone'=>$phone, 'education'=>$education, 'experience'=>$experience, 'info'=>$info, 'filepath'=>$filePath);
         $flag = $db->registryCustomer($user);
         if (!$flag) {
             echo "Something wrong";
@@ -94,3 +128,4 @@ if(isset($_POST)) {
     //redirect back to form
     header('location: ' . $_SERVER['HTTP_REFERER']);
 }
+
